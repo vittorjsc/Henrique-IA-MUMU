@@ -17,6 +17,7 @@ export default function App() {
         body: JSON.stringify({ mensagem: input }),
       });
       const data = await resp.json();
+    
       setMessages((msgs) => [
         ...msgs,
         { from: "henrique", text: data.resposta || "Nenhuma resposta." }
@@ -26,7 +27,7 @@ export default function App() {
         ...msgs,
         { from: "henrique", text: "Erro ao conectar com o backend." }
       ]);
-    }
+    }    
     setInput("");
     setLoading(false);
   };
