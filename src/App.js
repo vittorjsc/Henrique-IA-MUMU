@@ -11,13 +11,12 @@ export default function App() {
     setLoading(true);
 
     try {
-      fetch("https://primary-production-8d092.up.railway.app/webhook/mensagem", {
+      const resp = await fetch("https://primary-production-8d092.up.railway.app/webhook/mensagem", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ mensagem: input }),
       });
       const data = await resp.json();
-
       setMessages((msgs) => [
         ...msgs,
         { from: "henrique", text: data.resposta || "Nenhuma resposta." }
