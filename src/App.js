@@ -15,7 +15,7 @@ export default function App() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ mensagem: input }),
-      })
+      });
       const data = await resp.json();
 
       setMessages((msgs) => [
