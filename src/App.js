@@ -1,9 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export default function App() {
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [sessionId, setSessionId] = useState("");
+
+  useEffect(() => {
+    // Gera um session id único ao entrar na página
+    const id = crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).substring(2) + Date.now().toString(36);
+    setSessionId(id);
+  }, []);
 
   const sendMessage = async () => {
     if (!input.trim()) return;
@@ -11,10 +18,10 @@ export default function App() {
     setLoading(true);
 
     try {
-      const resp = await fetch("https://primary-production-8d092.up.railway.app/webhook/mensagem", {
+      const resp = await fetch("https://primary-production-0f9c.up.railway.app/webhook/mensagem", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ mensagem: input }),
+        body: JSON.stringify({ mensagem: input, session_id: sessionId }),
       });
       const data = await resp.json();
     
