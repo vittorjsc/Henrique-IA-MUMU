@@ -27,7 +27,7 @@ export default function App() {
     
       setMessages((msgs) => [
         ...msgs,
-        { from: "henrique", text: data.resposta || "Nenhuma resposta." }
+        { from: "henrique", text: data.output || "Nenhuma resposta." }
       ]);
     } catch (err) {
       setMessages((msgs) => [
