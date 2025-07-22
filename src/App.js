@@ -11,11 +11,11 @@ export default function App() {
     setLoading(true);
 
     try {
-      const resp = await fetch("http://localhost:5678/webhook/mensagem", {
+      fetch("https://primary-production-8d092.up.railway.app/webhook/mensagem", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ mensagem: input }),
-      });
+      })
       const data = await resp.json();
 
       setMessages((msgs) => [
