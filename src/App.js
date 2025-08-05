@@ -1,3 +1,4 @@
+import ReactMarkdown from "react-markdown";
 import React, { useState, useEffect } from "react";
 
 export default function App() {
@@ -72,7 +73,12 @@ export default function App() {
             color: m.from === "henrique" ? "#111176" : "#444",
             marginBottom: "1rem"
           }}>
-            <strong>{m.from === "henrique" ? "Henrique" : "Você"}:</strong> {m.text}
+            <strong>{m.from === "henrique" ? "Henrique" : "Você"}:</strong> 
+            {m.from === "henrique" ? (
+              <ReactMarkdown>{m.text}</ReactMarkdown>
+            ) : (
+              m.text
+            )}
           </div>
         ))}
         {loading && <div style={{ color: "#111176", fontStyle: "italic" }}>Henrique está pensando...</div>}
